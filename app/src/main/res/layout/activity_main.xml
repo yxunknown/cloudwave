@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dev.mevur.cloudwave.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <com.michaldrabik.tapbarmenulib.TapBarMenu
+            android:id="@+id/tapbar_menu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            app:tbm_backgroundColor="@color/colorAccent"
+            app:tbm_buttonMarginLeft="10dp"
+            app:tbm_buttonPosition="left"
+            app:tbm_buttonSize="35dp"
+            android:elevation="10dp">
+
+            <ImageView
+                android:id="@+id/item1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onMenuItemClicke"
+                android:padding="5dp"
+                android:src="@drawable/home" />
+
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:id="@+id/item2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onMenuItemClicke"
+                android:padding="5dp"
+                android:src="@drawable/alarm" />
+
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:id="@+id/item3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="onMenuItemClicke"
+                android:padding="5dp"
+                android:src="@drawable/map" />
+
+        </com.michaldrabik.tapbarmenulib.TapBarMenu>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:onClick="onLocationClicked"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/location_large"
+            app:backgroundTint="@color/colorAccent" />
+    </FrameLayout>
+
+</LinearLayout>
