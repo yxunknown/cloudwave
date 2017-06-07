@@ -7,15 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class RegisterActivity extends AppCompatActivity {
+import com.dev.mevur.cloudwave.http.IHttpHander;
+import com.dev.mevur.cloudwave.http.POST;
+
+public class RegisterActivity extends AppCompatActivity implements IHttpHander {
     private View mLoginControlPanel;
     private View mRegisterControlPanel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         init();
     }
+
     private void init() {
         mLoginControlPanel = findViewById(R.id.login_control);
         mRegisterControlPanel = findViewById(R.id.register_control);
@@ -23,13 +28,15 @@ public class RegisterActivity extends AppCompatActivity {
         mLoginControlPanel.setVisibility(View.VISIBLE);
         mRegisterControlPanel.setVisibility(View.GONE);
     }
+
     public void btnLoginControlClicked(View view) {
         if (mLoginControlPanel.getVisibility() != View.VISIBLE
-            && mRegisterControlPanel.getVisibility() == View.VISIBLE) {
+                && mRegisterControlPanel.getVisibility() == View.VISIBLE) {
             mRegisterControlPanel.setVisibility(View.GONE);
             mLoginControlPanel.setVisibility(View.VISIBLE);
         }
     }
+
     public void btnRegisterControlClicked(View view) {
         if (mLoginControlPanel.getVisibility() == View.VISIBLE
                 && mRegisterControlPanel.getVisibility() != View.VISIBLE) {
@@ -61,6 +68,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void btnRegisterClicked(View view) {
+
+        TextInputLayout id = (TextInputLayout) findViewById(R.id.register_id);
+        String strId = id.getEditText().getText().toString();
+        if ("".equals(id)) {
+            id.setError("id不能为空");
+            return;
+        }
         TextInputLayout username = (TextInputLayout) findViewById(R.id.register_username);
         String strUser = username.getEditText().toString();
         if ("".equals(strUser)) {
@@ -82,10 +96,15 @@ public class RegisterActivity extends AppCompatActivity {
         if (!strPass.equals(strCommitPass)) {
             commitPassword.setError("确认密码与原密码输入不一致");
             return;
-        } else {
-            Snackbar.make(view, "注册成功",Snackbar.LENGTH_SHORT).show();
-            mRegisterControlPanel.setVisibility(View.GONE);
-            mLoginControlPanel.setVisibility(View.VISIBLE);
         }
+        POST post = new POST("server", "/api/login", this, 1);
+        Snackbar.make(view, "注册成功", Snackbar.LENGTH_SHORT).show();
+        mRegisterControlPanel.setVisibility(View.GONE);
+        mLoginControlPanel.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void handler(int response, String data, String error, int request) {
+        
     }
 }

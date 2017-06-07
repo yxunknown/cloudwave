@@ -39,7 +39,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/My.NoActionbar" />
@@ -56,9 +56,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivity"
-                  android:label="智能航道"
-                  android:theme="@style/My.NoActionbar"></activity>
+        <activity
+            android:name=".MapActivity"
+            android:label="智能航道"
+            android:theme="@style/My.NoActionbar" />
+        <activity android:name=".SetServerActivity"></activity>
     </application>
 
 </manifest>
